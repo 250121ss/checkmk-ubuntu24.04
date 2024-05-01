@@ -1,0 +1,27 @@
+#!/bin/bash
+  
+  #          --------------++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ YouTube:  https://www.youtube.com/@linuxnetworkinghelp 
+#
+#         +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  Please Subscribe   === 
+#-------------------------------------------------
+
+# Update system packages
+sudo apt update
+
+# Install Apache and required modules
+sudo apt install -y apache2 apache2-utils libapache2-mod-proxy-html libapache2-mod-php libapache2-mod-proxy-html libapache2-mod-proxy-html libapache2-mod-proxy-html libapache2-mod-proxy-html libapache2-mod-proxy-html libapache2-mod-php8.0 libapache2-mod-proxy-html libapache2-mod-proxy-html libapache2-mod-proxy-html libapache2-mod-proxy-html libapache2-mod-php libapache2-mod-proxy-html libapache2-mod-proxy-html libapache2-mod-proxy-html libapache2-mod-proxy-html libapache2-mod-php libapache2-mod-proxy-html libapache2-mod-proxy-html libapache2-mod-proxy-html libapache2-mod-php libapache2-mod-proxy-html libapache2-mod-proxy-html libapache2-mod-proxy-html libapache2-mod-php libapache2-mod-proxy-html libapache2-mod-proxy-html libapache2-mod-proxy-html libapache2-mod-php
+
+# Download and install Checkmk
+wget https://download.checkmk.com/checkmk/2.3.0/check-mk-raw-2.3.0_0.jammy_amd64.deb
+sudo apt install ./check-mk-raw-2.3.0_0.jammy_amd64.deb
+
+# Create and start Checkmk monitoring site
+sudo omd create monitoring
+sudo omd start monitoring
+
+# Configure Apache modules
+sudo a2enmod proxy proxy_http proxy_html ssl rewrite
+sudo systemctl restart apache2
+
+# Output instructions to access Checkmk
+echo "Checkmk is now installed and running. Access it at http://ip.address/check_mk/"
